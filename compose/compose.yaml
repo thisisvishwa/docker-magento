@@ -16,8 +16,8 @@ services:
   app:
     image: markoshust/magento-nginx:1.18-8
     ports:
-      - "80:8000"
-      - "443:8443"
+      - "9581:8000"
+      - "9582:8443"
     volumes: &appvolumes
       - ~/.composer:/var/www/.composer:cached
       - ~/.ssh/id_rsa:/var/www/.ssh/id_rsa:cached
@@ -44,7 +44,7 @@ services:
       --optimizer_use_condition_selectivity=1
       --optimizer_switch="rowid_filter=off"
     ports:
-      - "3306:3306"
+      - "9583:3306"
     env_file: env/db.env
     volumes:
       - dbdata:/var/lib/mysql
@@ -57,8 +57,8 @@ services:
   opensearch:
     image: markoshust/magento-opensearch:2.5-0
     ports:
-      - "9200:9200"
-      - "9300:9300"
+      - "9584:9200"
+      - "9585:9300"
     env_file: env/opensearch.env
     environment:
       - "discovery.type=single-node"
@@ -97,7 +97,7 @@ services:
   mailcatcher:
     image: sj26/mailcatcher
     ports:
-      - "1080:1080"
+      - "9586:1080"
   
   ## Cloudflare tunnel support, uncomment to enable
   #tunnel:
